@@ -23,6 +23,7 @@ namespace FunctionsHandOnLab
         {
             services.AddMvc();
             services.AddSingleton<StorageAccess>();
+            services.Add(ServiceDescriptor.Singleton(Configuration));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

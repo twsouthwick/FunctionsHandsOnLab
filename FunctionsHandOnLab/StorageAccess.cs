@@ -1,4 +1,5 @@
-﻿using Microsoft.WindowsAzure.Storage;
+﻿using Microsoft.Extensions.Configuration;
+using Microsoft.WindowsAzure.Storage;
 using Microsoft.WindowsAzure.Storage.Queue;
 using Microsoft.WindowsAzure.Storage.Table;
 using System;
@@ -13,9 +14,9 @@ namespace FunctionsHandOnLab
         private readonly CloudQueue _commentQueue;
         private readonly Task _initialize;
 
-        public StorageAccess()
+        public StorageAccess(IConfiguration configuration)
         {
-            var account = CloudStorageAccount.DevelopmentStorageAccount;
+            var account = CloudStorageAccount.Parse(configuration["StorageKey"]);
             var tableClient = account.CreateCloudTableClient();
             var queueClient = account.CreateCloudQueueClient();
 
